@@ -61,10 +61,10 @@ def mergesort(liist):
 liist = [12, 45, 23, 89, 67, 34, 90, 15, 8, 56]
 
 
-#print (insersionsort(liist))
+print (insersionsort(liist))
 #print(bubblesort(liist))
 
-print (mergesort(liist))
+#print (mergesort(liist))
 
 
 #print (liist)
