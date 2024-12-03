@@ -32,8 +32,8 @@ def generate_sparse_graph(n_nodes):
     
     return graph
 
-def generate_dense_graph(n_nodes):
-    """Generate a dense graph with approximately n_nodes * (n_nodes-1) / 3 edges"""
+def generate_dense_graph(n_nodes, chance = 0.80): ##default chance set to 80%
+    """Generate a dense graph with approximately n_nodes * (n_nodes-1) * %chance edges """
     graph = {}
     
     # Initialize all nodes
@@ -41,11 +41,11 @@ def generate_dense_graph(n_nodes):
         node_name = f'Node{i}'
         graph[node_name] = []
     
-    # Add edges - each node will connect to about 2/3 of other nodes
+    # Add edges - each node will connect to about (varies when changing % chance) of other nodes
     for i in range(1, n_nodes + 1):
         node1 = f'Node{i}'
         for j in range(i + 1, n_nodes + 1):
-            if random.random() < 0.80:  # 80% chance of edge creation, i dont want it to be a complete graph. 
+            if random.random() < chance:  # % chance of edge creation, i dont want it to be a complete graph. 
                 node2 = f'Node{j}'
                 weight = random.randint(1, 10)
                 graph[node1].append((node2, weight))  ## again, making it bidirectional
