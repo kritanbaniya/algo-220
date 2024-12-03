@@ -1,15 +1,15 @@
 import random
-
-def generate_sparse_graph(n_nodes):
-    """Generate a sparse graph with  2.5 * n_nodes edges"""
+ ## making graphs wont impact run time mesurements since its not included between start and stop of timer
+def generate_sparse_graph(n_nodes): 
+    ##Generate a sparse graph with  2.5 * n_nodes edges
     graph = {}
     
-    # Initialize all nodes
+    ##Initialize all nodes
     for i in range(1, n_nodes + 1):
         node_name = f'Node{i}'
         graph[node_name] = []
     
-    # Ensure the graph is connected by creating a path through all nodes, to make it sparse
+    ##Ensure the graph is connected by creating a path through all nodes, to make it sparse
     for i in range(1, n_nodes):
         current_node = f'Node{i}'
         next_node = f'Node{i+1}'
@@ -19,7 +19,7 @@ def generate_sparse_graph(n_nodes):
         graph[current_node].append((next_node, weight))
         graph[next_node].append((current_node, weight))
     
-    # Add a few random edges to make it bit more complex and not a 100% sparse graph
+    ##Add a few random edges to make it bit more complex and not a 100% sparse graph
     extra_edges = n_nodes // 2
     for _ in range(extra_edges):
         node1 = f'Node{random.randint(1, n_nodes)}'
@@ -33,7 +33,8 @@ def generate_sparse_graph(n_nodes):
     return graph
 
 def generate_dense_graph(n_nodes, chance = 0.80): ##default chance set to 80%
-    """Generate a dense graph with approximately n_nodes * (n_nodes-1) * %chance edges """
+    ##Generate a dense graph with approximately n_nodes * (n_nodes-1) * %chance edges
+    ## A complete graph with n_nodes had n_nodes*(n_nodes-1) edges, and a complete graph is the most denst it can get
     graph = {}
     
     # Initialize all nodes

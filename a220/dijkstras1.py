@@ -1,19 +1,19 @@
 import heapq
 
 def dijkstra(graph, source):
-    ##predecessor takes up O(V) space  
+    ##predecessor takes up O(V) space and O(V) time
     predecessor = {v: None for v in graph}  # To track paths, so we can reconstruct path from a note to another node
-    ##Visited takes up O(V) space
+    ##Visited takes up O(V) space and O(V) time
     Visited = {v: False for v in graph}
     ## distance_from_start takes up O(V) space where v is total number of verticies in the graph
     distance_from_start = {v: float('inf') for v in graph} ## initiliazing distance from source to all nodes as infinity in the begining
     distance_from_start[source] = 0 ## changing distance from source to cource to 0
-    ## priority_queue takes up to  O(E) space
+    
     priority_queue = [(0, source)]  # (distance, vertex)
     
     
-    while priority_queue:
-        current_distance, current_vertex = heapq.heappop(priority_queue) ## the greedy step, which is why it sometimes fails for graph with negative edges
+    while priority_queue:  ##takes up to  O(E log E) time
+        current_distance, current_vertex = heapq.heappop(priority_queue) ## O(log E),the greedy step, which is why it sometimes fails for graph with negative edges
         Visited[current_vertex] = True
         
         # Skip if the distance is not optimal, this happens when there are dupes of vertex in priority queu with worse distances
@@ -31,7 +31,9 @@ def dijkstra(graph, source):
                 heapq.heappush(priority_queue, (distance, neighbor)) ## the book uses decrease key (O(log n)), but we will used heap push (O(log n)), 
                                                                    
                                                                     
-    return distance_from_start, predecessor
+    return distance_from_start, predecessor 
+    ## distance_from_start is the dictionary with Vertext and shortest path (length) to vertext from start.
+    ## predecessor is the dictionary with the previous node of a vertext, it is used to re-construct the acctual path shortest from start to node
 
 def reconstruct_path(predecessor, source, target):
     path = []

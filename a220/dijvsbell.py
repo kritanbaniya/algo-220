@@ -50,7 +50,7 @@ graph_sizes = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280,
 #     # Calculate average runtime
 #     average_runtime_bf = sum(currruntimes_bf) / len(currruntimes_bf)
 #     rt_bellmanford_dense.append(average_runtime_bf)
-##############################################################################################################
+############################################################################################################
 
 ## tests for dijkstra and bellmanford on random sparse graphs
 # for i in graph_sizes:
